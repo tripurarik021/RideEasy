@@ -1,0 +1,155 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
+
+:root {
+  /* Colors */
+  --bg-primary:   #0b0f1a;
+  --bg-surface:   #141928;
+  --bg-elevated:  #1c2440;
+  --border:       rgba(255,255,255,0.08);
+  --text-primary: #f0f4ff;
+  --text-secondary:#8892b0;
+  --accent:       #00d4aa;       /* teal */
+  --accent-dim:   rgba(0,212,170,0.15);
+  --accent-glow:  0 0 20px rgba(0,212,170,0.3);
+  --danger:       #ff6b6b;
+  --warning:      #ffd166;
+  --success:      #06d6a0;
+
+  /* Typography */
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+
+  /* Layout */
+  --sidebar-w:    380px;
+  --radius-sm:    8px;
+  --radius-md:    12px;
+  --radius-lg:    20px;
+
+  /* Shadows */
+  --shadow-sm:    0 2px 8px rgba(0,0,0,0.4);
+  --shadow-md:    0 8px 24px rgba(0,0,0,0.5);
+  --shadow-lg:    0 20px 60px rgba(0,0,0,0.6);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar  */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ── Utilities */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #0b0f1a;
+}
+.btn-primary:hover { filter: brightness(1.1); box-shadow: var(--accent-glow); }
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+}
+.btn-ghost {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { background: var(--accent-dim); border-color: var(--accent); }
+
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input:focus { border-color: var(--accent); }
+.input::placeholder { color: var(--text-secondary); }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.badge-requested { background: rgba(255,209,102,0.2); color: var(--warning); }
+.badge-accepted  { background: rgba(0,212,170,0.2);   color: var(--accent);  }
+.badge-in_progress { background: rgba(0,212,170,0.3); color: var(--accent);  }
+.badge-completed { background: rgba(6,214,160,0.2);   color: var(--success); }
+.badge-cancelled { background: rgba(255,107,107,0.2); color: var(--danger);  }
+
+/* ── Animations  */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-slide-up { animation: slideUp 0.3s ease; }
+.animate-fade-in  { animation: fadeIn 0.2s ease;  }
+.animate-pulse    { animation: pulse 2s infinite; }
+
+.spinner {
+  width: 20px; height: 20px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
